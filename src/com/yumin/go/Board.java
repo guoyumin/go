@@ -2,16 +2,19 @@ package com.yumin.go;
 
 import java.util.Arrays;
 
-public class Board {
+public class Board implements IBoard{
     private int dimensionX = 0;
     private int dimensionY = 0;
     Stone[][] stones;
+    @Override
     public int getDimensionX() {
         return dimensionX;
     }
+    @Override
     public int getDimensionY() {
         return dimensionY;
     }
+    
     public Board(int x, int y) {
         if (x<=0 || y<=0) {
             throw new IllegalArgumentException("Board dimension must be greater than zero.");
@@ -21,10 +24,12 @@ public class Board {
         this.stones = new Stone[x][y];
         resetBoard();
     }
+    @Override
     public void setStone(Stone stone, int x, int y) {
         checkInputRange(x,y);
         stones[x][y] = stone;
     }
+    @Override
     public void resetBoard() {
         for (int i=0; i<dimensionX; i++) {
             for (int j=0; j<dimensionY; j++) {
@@ -32,15 +37,18 @@ public class Board {
             }
         }
     }
+    @Override
     public Stone getStone(int x, int y) {
         checkInputRange(x,y);
         return stones[x][y];
     }
+    
     private void checkInputRange (int x, int y) {
         if (x>=dimensionX || x<0 || y>=dimensionY || y<0) {
             throw new IllegalArgumentException("Cannot place a stone out of board range.");
         }
     }
+    @Override
     public boolean equals (Object obj) {
         if (obj ==  null) {
             return false ;
@@ -54,10 +62,12 @@ public class Board {
         }
         return Arrays.deepEquals(stones, newBoard.stones);
     }
+    @Override
     public int hashCode() {
-        return stones.hashCode();
+        return Arrays.hashCode(stones);
     }
-    public Board deepCopy() {
+    @Override
+    public IBoard deepCopy() {
         Board newBoard = new Board(dimensionX, dimensionY);
         for (int i=0; i<dimensionX; i++) {
             newBoard.stones[i] = Arrays.copyOf(stones[i], stones[i].length);

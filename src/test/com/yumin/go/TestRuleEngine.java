@@ -138,12 +138,10 @@ public class TestRuleEngine {
         whites.add(new Point(4,3));
         whites.add(new Point(2,4));
         whites.add(new Point(3,4));
-        //whites.add(new Point(4,4));
+        whites.add(new Point(4,4));
 
         placeStones(blacks, engine, Stone.BLACK);
         placeStones(whites, engine, Stone.WHITE);
-        assertTrue("Wrongly mark illegal move for no liberty", engine.isLegalMove(Stone.WHITE, 4, 4));
-        engine.placeStone(Stone.WHITE, 4, 4);
         assertTrue("wrongly mark illegal move for no liberty", engine.placeStone(Stone.BLACK, 3, 3));
 
         assertStones(blacks, engine, Stone.BLACK);      
@@ -175,7 +173,6 @@ public class TestRuleEngine {
     public void testIllegalMoveForNoLiberty() {
         GoRuleEngine engine = new GoRuleEngine(new Board(9,9));
         List<Point> blacks = new LinkedList<>();
-        List<Point> whites = new LinkedList<>();
         blacks.add(new Point(3,3));
         blacks.add(new Point(2,4));
         blacks.add(new Point(3,5));

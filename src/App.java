@@ -1,7 +1,7 @@
 import com.yumin.go.*;
+import com.yumin.goui.TerminalBasedApp;
 public class App {
-    public static void main(String[] args) throws Exception {
-        Board board  = new Board(9,9);
-        System.out.println("Hello, World!");
+    public static void main(String[] args) {
+        new TerminalBasedApp().run();
     }
 }

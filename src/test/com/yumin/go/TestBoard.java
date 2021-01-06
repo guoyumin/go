@@ -38,9 +38,9 @@ public class TestBoard {
     }
     @Test
     public void testDeepCopy () {
-        Board board = new Board(9, 9);
+        IBoard board = new Board(9, 9);
         board.setStone(Stone.BLACK, 1, 1);
-        Board newBoard = board.deepCopy();
+        IBoard newBoard = board.deepCopy();
         assertEquals(board.getStone(1, 1), newBoard.getStone(1,1));
         assertTrue("deep copied board does not equal to the original board.", board.equals(newBoard));
         newBoard.setStone(Stone.WHITE, 2, 2);
